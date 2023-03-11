@@ -2,7 +2,49 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model UsersModel
+
+
 <div class="text-center">
-    <h1 class="display-4">Test</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <header class="header">
+        <a asp-controller="Home" asp-action="Create">
+            Добавить нового пользователя
+        </a>
+
+        <div>
+            Страница # 1 из 10
+        </div>
+    </header>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Идентификатор</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.LastName</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <footer class="home-footer">
+        <button>
+            Назад
+        </button>
+        
+        <button>
+            Вперед
+        </button>
+    </footer>
 </div>
