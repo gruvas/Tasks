@@ -1,7 +1,25 @@
+using Microsoft.Extensions.DependencyInjection;
+using Tasks.DAL;
+using Tasks.DAL.Repositories;
+using Tasks.DAL.Repositories.Interface;
+using Tasks.Models;
+using Tasks.PostgresMigrate;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserMockData>();
+
+
+//var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionString");
+var connectionString = "Host = localhost; Port = 5432; Database = c#; Username = postgres; Password = root";
+//PostgresMigrator.Migrate(connectionString);
+
+//builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+
 
 var app = builder.Build();
 
@@ -22,6 +40,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=UserList}/{action=Index}/{id?}");
 
 app.Run();
+

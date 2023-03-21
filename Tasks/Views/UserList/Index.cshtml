@@ -7,7 +7,7 @@
 
 <div class="text-center">
     <header class="header">
-        <a asp-controller="Home" asp-action="Create">
+        <a asp-controller="UserList" asp-action="Create">
             Добавить нового пользователя
         </a>
 
@@ -26,14 +26,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.Users)
+            @if (Model.Users != null)
             {
-                <tr>
-                    <td>@user.Id</td>
-                    <td>@user.LastName</td>
-                    <td>@user.FirstName</td>
-                    <td>@user.Email</td>
-                </tr>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.LastName</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.Email</td>
+                    </tr>
+                }
             }
         </tbody>
     </table>

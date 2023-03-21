@@ -1,6 +1,6 @@
 ﻿namespace Tasks.Models
 {
-    internal class UserListViewModel
+    internal class TaskListViewModel
     {
         public object Users { get; set; }
         public int CurrentPage { get; set; }
