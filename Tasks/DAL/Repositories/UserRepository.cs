@@ -45,17 +45,12 @@ public class UserRepository : IUserRepository
 
     public void AddUser(User user)
     {
-        //user.Id = _userModel.Users.Max(u => u.Id) + 1;
-        //_userModel.Users.Add(user);
-
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string insertQuery = $"INSERT INTO main.users(\"lastname\", \"firstname\", \"email\") " +
                                  $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')";
             db.Execute(insertQuery);
         }
-
-
     }
 
     public void UpdateUser(User user)
