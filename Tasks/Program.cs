@@ -15,7 +15,7 @@ builder.Services.AddScoped<UserMockData>();
 
 
 //var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionString");
-var connectionString = "Host = localhost; Port = 5432; Database = c#; Username = postgres; Password = root";
+var connectionString = "Server=localhost;Port=5432;Database=c#;User Id=postgres;Password=root;";
 //PostgresMigrator.Migrate(connectionString);
 
 //builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));

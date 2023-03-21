@@ -1,29 +1,19 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Npgsql;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using Tasks.DAL;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Models;
 
-//public interface IUserRepository
-//{
-//    List<User> GetAllUsers();
-//    User GetUserById(int id);
-//    void AddUser(User user);
-//    void UpdateUser(User user);
-//    void DeleteUser(int id);
-//}
 
 public class UserRepository : IUserRepository
 {
     public UserMockData _userModel;
 
     //string connectionString = null;
-    //string connectionString = "Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=root;";
-    //string connectionString = "Server = localhost; Port = 5432; Database = c#; Username = postgres; Password = root";
-    //string connectionString = "jdbc:postgresql://localhost:5432/postgres";
 
     //public UserRepository(string conn)
     //{
@@ -55,8 +45,17 @@ public class UserRepository : IUserRepository
 
     public void AddUser(User user)
     {
-        user.Id = _userModel.Users.Max(u => u.Id) + 1;
-        _userModel.Users.Add(user);
+        //user.Id = _userModel.Users.Max(u => u.Id) + 1;
+        //_userModel.Users.Add(user);
+
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            string insertQuery = $"INSERT INTO main.users(\"lastname\", \"firstname\", \"email\") " +
+                                 $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')";
+            db.Execute(insertQuery);
+        }
+
+
     }
 
     public void UpdateUser(User user)
