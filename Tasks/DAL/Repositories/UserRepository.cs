@@ -43,7 +43,7 @@ public class UserRepository : IUserRepository
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            string insertQuery = $"INSERT INTO main.users(\"lastname\", \"firstname\", \"email\") " +
+            string insertQuery = $"INSERT INTO main.users(\"LastName\", \"FirstName\", \"Email\") " +
                                  $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')";
             db.Execute(insertQuery);
         }
