@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tasks.DAL;
 using Tasks.DAL.Repositories;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Models;
-using Tasks.PostgresMigrate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +15,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserMockData>();
 
 
-//var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionString");
-var connectionString = "Server=localhost;Port=5432;Database=c#;User Id=postgres;Password=root;";
-//PostgresMigrator.Migrate(connectionString);
+string connectionString = builder.Configuration["ConnectionString:NpgsqlConnectionString"];
 
-//builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+
 
 
 var app = builder.Build();

@@ -13,14 +13,12 @@ public class UserRepository : IUserRepository
 {
     public UserMockData _userModel;
 
-    //string connectionString = null;
+    string connectionString = null;
 
-    //public UserRepository(string conn)
-    //{
-    //    connectionString = conn;
-    //}
-
-    string connectionString = "Server=localhost;Port=5432;Database=c#;User Id=postgres;Password=root;";
+    public UserRepository(string conn)
+    {
+        connectionString = conn;
+    }
 
 
     public UserRepository(UserMockData userModel)
@@ -30,8 +28,6 @@ public class UserRepository : IUserRepository
 
     public List<User> GetAllUsers()
     {
-        //return _userModel.Users;
-
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             return db.Query<User>("SELECT * FROM main.users").ToList();
