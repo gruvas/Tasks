@@ -11,8 +11,9 @@ namespace Tasks.DAL
 
             for (int i = 1; i < 10; i++)
             {
-                _users.Add(new User() { 
-                    Id = i, 
+                _users.Add(new User()
+                {
+                    Id = i,
                     LastName = $"LastName {i}",
                     FirstName = $"FirstName {i}",
                     Email = $"Email {i}"

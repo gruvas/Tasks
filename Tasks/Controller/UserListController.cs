@@ -54,5 +54,19 @@ namespace Tasks.Controllers
 
             return View(model);
         }
+
+        //[HttpGet]
+        //public IActionResult Change(int id)
+        //{
+        //    var user = _userRepository.GetUserById(id);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(user);
+        //}
+        
     }
 }

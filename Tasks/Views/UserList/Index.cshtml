@@ -31,7 +31,9 @@
                 @foreach (var user in Model.Users)
                 {
                     <tr>
-                        <td>@user.Id</td>
+                        <td>
+                            <a href="/UserList/Change/@user.Id">@user.Id</a>
+                        </td>
                         <td>@user.LastName</td>
                         <td>@user.FirstName</td>
                         <td>@user.Email</td>

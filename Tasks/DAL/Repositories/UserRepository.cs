@@ -36,7 +36,11 @@ public class UserRepository : IUserRepository
 
     public User GetUserById(int id)
     {
-        return _userModel.Users.FirstOrDefault(u => u.Id == id);
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            string selectQuery = $"SELECT * FROM main.users WHERE id = {id}";
+            return db.QueryFirstOrDefault<User>(selectQuery);
+        }
     }
 
     public void AddUser(User user)
@@ -51,21 +55,19 @@ public class UserRepository : IUserRepository
 
     public void UpdateUser(User user)
     {
-        var existingUser = _userModel.Users.FirstOrDefault(u => u.Id == user.Id);
-        if (existingUser != null)
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            existingUser.FirstName = user.FirstName;
-            existingUser.LastName = user.LastName;
-            existingUser.Email = user.Email;
+            string updateQuery = $"UPDATE main.users SET \"LastName\" = '{user.LastName}', \"FirstName\" = '{user.FirstName}', \"Email\" = '{user.Email}' WHERE \"Id\" = {user.Id}";
+            db.Execute(updateQuery);
         }
     }
 
     public void DeleteUser(int id)
     {
-        var userToDelete = _userModel.Users.FirstOrDefault(u => u.Id == id);
-        if (userToDelete != null)
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            _userModel.Users.Remove(userToDelete);
+            string deleteQuery = $"DELETE FROM main.users WHERE id = {id}";
+            db.Execute(deleteQuery);
         }
     }
 }
