@@ -5,6 +5,7 @@ using Tasks.DAL;
 using Tasks.DAL.Repositories;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Models;
+using Tasks.PostgresMigrate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddScoped<UserMockData>();
 
 
 string connectionString = builder.Configuration["ConnectionString:NpgsqlConnectionString"];
-
+PostgresMigrator.Migrate(connectionString);
 builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
 
 

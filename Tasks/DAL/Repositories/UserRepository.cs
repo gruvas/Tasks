@@ -13,7 +13,7 @@ public class UserRepository : IUserRepository
 {
     public UserMockData _userModel;
 
-    string connectionString = null;
+    string connectionString = "";
 
     public UserRepository(string conn)
     {

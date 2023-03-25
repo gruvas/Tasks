@@ -11,8 +11,4 @@
     <PackageReference Include="dbup-postgresql" Version="5.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
-
 </Project>
