@@ -1,8 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
 
+@inject IHtmlHelper<UsersModel> Html
+
+@{
+    ViewData["Title"] = "Home Page";
+    var viewContext = Html.ViewContext;
+}
 @model UsersModel
+
+@{
+    var request = viewContext.HttpContext.Request;
+
+    var pageSize = 10;
+    var pageCount = Math.Ceiling((double)Model.Users.Count / pageSize);
+    var pageCurrent = request.Query.ContainsKey("page") ? int.Parse(request.Query["page"]) : 1;
+    var startIndex = (pageCurrent - 1) * pageSize;
+    var displayedUsers = Model.Users.Skip(startIndex).Take(pageSize).ToList();
+}
 
 
 <div class="text-center">
@@ -12,7 +27,7 @@
         </a>
 
         <div>
-            Страница # 1 из @(Math.Ceiling((double)Model.Users.Count / 10))
+            Страница  # @pageCurrent из @pageCount
         </div>
     </header>
 
@@ -26,9 +41,9 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Users != null)
+            @if (displayedUsers.Any())
             {
-                @foreach (var user in Model.Users)
+                @foreach (var user in displayedUsers)
                 {
                     <tr>
                         <td>
@@ -44,12 +59,7 @@
     </table>
 
     <footer class="home-footer">
-        <button>
-            Назад
-        </button>
-        
-        <button>
-            Вперед
-        </button>
+        <a asp-action="Index" asp-route-page="@(pageCurrent - 1 < 1 ? 1 : pageCurrent - 1)">Назад</a>
+        <a asp-action="Index" asp-route-page="@(pageCurrent + 1 > pageCount ? pageCount : pageCurrent + 1)">Вперед</a>
     </footer>
 </div>

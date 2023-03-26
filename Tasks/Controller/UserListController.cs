@@ -14,8 +14,10 @@ namespace Tasks.Controllers
             _userRepository = userRepository;
         }
 
+
+
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
             var users = _userRepository.GetAllUsers();
 

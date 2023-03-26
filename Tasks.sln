@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Tasks\Tasks.csproj", "{FFB54A15-709A-4C4E-8412-604C3CEE3D33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.PostgresMigrate", "Tasks.PostgresMigrate\Tasks.PostgresMigrate.csproj", "{67E501A8-F72F-4767-9237-4921E0E01765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.PostgresMigrate", "Tasks.PostgresMigrate\Tasks.PostgresMigrate.csproj", "{67E501A8-F72F-4767-9237-4921E0E01765}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
