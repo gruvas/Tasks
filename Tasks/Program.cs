@@ -12,10 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<UserMockData>();
-
-
 string connectionString = builder.Configuration["ConnectionString:NpgsqlConnectionString"];
 PostgresMigrator.Migrate(connectionString);
 builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));

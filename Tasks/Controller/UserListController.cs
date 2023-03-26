@@ -39,11 +39,30 @@ namespace Tasks.Controllers
             return View(user);
         }
 
+        [HttpGet]
+        [HttpPost]
+        public IActionResult Change(User user, int? id)
+        {
+            if (id != null)
+            {
+                var userById = _userRepository.GetUserById(id.Value);
+                if (userById == null)
+                {
+                    return NotFound();
+                }
+                return View(userById);
+            }
+            else 
+            {
+                user = _userRepository.AddUser(user);
+                return RedirectToAction("Change", "UserList", new { id = user.Id });
+            }
+        }
 
         [HttpPost]
         public IActionResult Index(User user)
         {
-            _userRepository.AddUser(user);
+            _userRepository.UpdateUser(user);
 
             var users = _userRepository.GetAllUsers();
 
@@ -54,19 +73,5 @@ namespace Tasks.Controllers
 
             return View(model);
         }
-
-        //[HttpGet]
-        //public IActionResult Change(int id)
-        //{
-        //    var user = _userRepository.GetUserById(id);
-
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(user);
-        //}
-        
     }
 }

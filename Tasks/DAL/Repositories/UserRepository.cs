@@ -11,19 +11,11 @@ using Tasks.Models;
 
 public class UserRepository : IUserRepository
 {
-    public UserMockData _userModel;
-
     string connectionString = "";
 
-    public UserRepository(string conn)
+    public UserRepository(string connection)
     {
-        connectionString = conn;
-    }
-
-
-    public UserRepository(UserMockData userModel)
-    {
-        _userModel = userModel;
+        connectionString = connection;
     }
 
     public List<User> GetAllUsers()
@@ -38,18 +30,19 @@ public class UserRepository : IUserRepository
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            string selectQuery = $"SELECT * FROM main.users WHERE id = {id}";
+            string selectQuery = $"SELECT * FROM main.users WHERE \"Id\" = {id}";
             return db.QueryFirstOrDefault<User>(selectQuery);
         }
     }
 
-    public void AddUser(User user)
+    public User AddUser(User user)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string insertQuery = $"INSERT INTO main.users(\"LastName\", \"FirstName\", \"Email\") " +
-                                 $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')";
-            db.Execute(insertQuery);
+                                 $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')" +
+                             "RETURNING \"Id\", \"LastName\", \"FirstName\", \"Email\"";
+            return db.QueryFirstOrDefault<User>(insertQuery);
         }
     }
 
@@ -66,7 +59,7 @@ public class UserRepository : IUserRepository
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            string deleteQuery = $"DELETE FROM main.users WHERE id = {id}";
+            string deleteQuery = $"DELETE FROM main.users WHERE \"Id\" = {id}";
             db.Execute(deleteQuery);
         }
     }

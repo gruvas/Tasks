@@ -1,23 +1,26 @@
 ﻿@model Tasks.Models.User
-@*@model UsersModel*@
 
-<h1>Create User</h1>
+<h1 class="text-center">User change</h1>
 
 <form method="post" asp-controller="/" asp-action="Index">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+
     <div class="form-group">
         <label asp-for="LastName">Last Name</label>
-        <input asp-for="LastName" class="form-control" />
+        <input asp-for="LastName" class="form-control" value="@Model.LastName" />
     </div>
 
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
     </div>
 
     <div class="form-group">
         <label asp-for="Email">Email</label>
-        <input asp-for="Email" class="form-control" />
+        <input asp-for="Email" class="form-control" value="@Model.Email" />
     </div>
 
-    <button type="submit" value="Submit" class="btn btn-primary">Отправить запрос</button>
+    <div class="text-center">
+        <button type="submit" value="Submit" class="btn btn-primary mt-3 text-center">Отправить запрос</button>
+    </div>
 </form>
