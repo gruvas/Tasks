@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
+using Tasks.Logic;
 using Tasks.Models;
 
 namespace Tasks.Controllers
@@ -20,9 +22,15 @@ namespace Tasks.Controllers
         {
             var users = _userRepository.GetAllUsers();
 
+            HttpRequest request = HttpContext.Request;
+
+            var (pageCurrent, pageCount, displayedUsers) = Pagination.GetPagedResult(users, request);
+
             var model = new UsersModel
             {
-                Users = users
+                Users = displayedUsers,
+                PageCurrent = pageCurrent,
+                PageCount = pageCount
             };
 
             return View(model);

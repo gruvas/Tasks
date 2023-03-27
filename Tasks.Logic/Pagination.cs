@@ -1,17 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Reflection;
+using Tasks.DAL.Repositories.Interface;
+using Tasks.Models;
 
 namespace Tasks.Logic
 {
     public class Pagination
     {
-        public static (int, int, int, int, IQueryable<T>) GetPagedResult<T>(IQueryable<T> source, HttpRequest request, int pageSize = 10)
+        public static (int, int, List<User>) GetPagedResult(List<User> users, HttpRequest request)
         {
-            var pageCurrent = request.Query.ContainsKey("page") ? int.Parse(request.Query["page"]) : 1;
-            var pageCount = (int)Math.Ceiling((double)source.Count() / pageSize);
-            var startIndex = (pageCurrent - 1) * pageSize;
-            var displayedData = source.Skip(startIndex).Take(pageSize);
+            int pageSize = 10;
 
-            return (pageCurrent, pageSize, pageCount, startIndex, displayedData);
+            int pageCount = (int)Math.Ceiling((double)users.Count / pageSize);
+            var pageCurrent = request.Query.ContainsKey("page") ? int.Parse(request.Query["page"]) : 1;
+            var startIndex = (pageCurrent - 1) * pageSize;
+            var displayedUsers = users.Skip(startIndex).Take(pageSize).ToList();
+
+            return (pageCurrent, pageCount, displayedUsers);
         }
     }
 }
