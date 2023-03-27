@@ -2,6 +2,10 @@
 
 <h1 class="text-center">User change</h1>
 
+<div class="text-center">
+    <a asp-controller="/" asp-action="Index">На главную</a>
+</div>
+
 <form method="post" asp-controller="/" asp-action="Index">
     <input type="hidden" asp-for="Id" value="@Model.Id" />
 

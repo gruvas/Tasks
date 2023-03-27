@@ -4,10 +4,10 @@ namespace Tasks.DAL.Repositories.Interface
 {
     public interface IUserRepository
     {
-        List<User> GetAllUsers();
-        User GetUserById(int id);
-        User AddUser(User user);
-        void UpdateUser(User user);
+        List<Models.User> GetAllUsers();
+        Models.User GetUserById(int id);
+        Models.User AddUser(Models.User user);
+        void UpdateUser(Models.User user);
         void DeleteUser(int id);
     }
 }
