@@ -15,6 +15,7 @@ builder.Services.AddControllersWithViews();
 string connectionString = builder.Configuration["ConnectionString:NpgsqlConnectionString"];
 PostgresMigrator.Migrate(connectionString);
 builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
 
 
 
@@ -31,8 +32,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseExceptionHandler("/Error");
-app.UseStatusCodePagesWithRedirects("/Error/{0}");
+//app.UseExceptionHandler("/Error");
+//app.UseStatusCodePagesWithRedirects("/Error/{0}");
 
 app.UseRouting();
 

@@ -1,17 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @using Microsoft.AspNetCore.Mvc.ViewFeatures
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-@model UsersModel
+@model TasksModel
 
 
 <div class="text-center">
     <header class="header">
-        <a asp-controller="UserList" asp-action="Create">
-            Добавить нового пользователя
+        <a asp-controller="TaskList" asp-action="Create">
+            Добавить новую задацу
         </a>
 
         <div>
@@ -22,24 +18,30 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Идентификатор</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Email</th>
+                <th>Id</th>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Кто создал</th>
+                <th>Кто выполняет</th>
+                <th>Дата создания</th>
+                <th>Дата окончания</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model.Users.Any())
+            @if (Model.Tasks.Any())
             {
-                @foreach (var user in Model.Users)
+                @foreach (var task in Model.Tasks)
                 {
                     <tr>
                         <td>
-                            <a href="/UserList/Change/@user.Id">@user.Id</a>
+                            <a href="/TaskList/Change/@task.Id">@task.Id</a>
                         </td>
-                        <td>@user.LastName</td>
-                        <td>@user.FirstName</td>
-                        <td>@user.Email</td>
+                        <td>@task.Subject</td>
+                        <td>@task.Description</td>
+                        <td>@task.ContractorId</td>
+                        <td>@task.InitiatorId</td>
+                        <td>@task.CreatedDate</td>
+                        <td>@task.ExpirationDate</td>
                     </tr>
                 }
             }
@@ -50,8 +52,4 @@
         <a asp-action="Index" asp-route-page="@(Model.PageCurrent - 1 < 1 ? 1 : Model.PageCurrent - 1)">Назад</a>
         <a asp-action="Index" asp-route-page="@(Model.PageCurrent + 1 > Model.PageCount ? Model.PageCount : Model.PageCurrent + 1)">Вперед</a>
     </footer>
-
-    <div class="text-center mt-2">
-        <a asp-controller="/TaskList" asp-action="Index">Перейти к созданию задач</a>
-    </div>
 </div>
