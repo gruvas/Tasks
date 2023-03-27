@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Tasks\Tasks.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.PostgresMigrate", "Tasks.PostgresMigrate\Tasks.PostgresMigrate.csproj", "{67E501A8-F72F-4767-9237-4921E0E01765}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.Logic", "Tasks.Logic\Tasks.Logic.csproj", "{0F5326AF-B4CB-4518-918D-34C0A3231D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.DAL", "Tasks.DAL\Tasks.DAL.csproj", "{BC1C3029-2B12-4618-BBE8-A7A91902687D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{67E501A8-F72F-4767-9237-4921E0E01765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67E501A8-F72F-4767-9237-4921E0E01765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E501A8-F72F-4767-9237-4921E0E01765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F5326AF-B4CB-4518-918D-34C0A3231D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F5326AF-B4CB-4518-918D-34C0A3231D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F5326AF-B4CB-4518-918D-34C0A3231D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F5326AF-B4CB-4518-918D-34C0A3231D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

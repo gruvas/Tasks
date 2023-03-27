@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tasks.DAL\Tasks.DAL.csproj" />
     <ProjectReference Include="..\Tasks.PostgresMigrate\Tasks.PostgresMigrate.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Models;
@@ -13,8 +14,6 @@ namespace Tasks.Controllers
         {
             _userRepository = userRepository;
         }
-
-
 
         [HttpGet]
         public IActionResult Index(int? page)
