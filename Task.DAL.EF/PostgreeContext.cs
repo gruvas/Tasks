@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tasks.Models;
 
 namespace Task.DAL.EF
 {
@@ -9,8 +10,7 @@ namespace Task.DAL.EF
         {
         }
 
-
-        //public DbSet<User> Users => Set<User>();
-        //public DbSet<T.Task> Tasks => Set<T.Task>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Tasks.Models.Task> Tasks => Set<Tasks.Models.Task>();
     }
 }
