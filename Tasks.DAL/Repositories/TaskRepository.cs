@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Tasks.DAL;
 using Tasks.DAL.Repositories.Interface;
-using Tasks.Models;
-
+using Task = Tasks.Domain.Models.Tasks.Task;
 
 public class TaskRepository : ITaskRepository
 {
@@ -19,24 +17,24 @@ public class TaskRepository : ITaskRepository
         connectionString = connection;
     }
 
-    public List<Tasks.Models.Task> GetAllTasks()
+    public List<Task> GetAllTasks()
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
-            return db.Query<Tasks.Models.Task>("SELECT * FROM main.tasks").ToList();
+            return db.Query<Task>("SELECT * FROM main.tasks").ToList();
         }
     }
 
-    public Tasks.Models.Task GetTaskById(int id)
+    public Task GetTaskById(int id)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string selectQuery = $"SELECT * FROM main.tasks WHERE \"Id\" = {id}";
-            return db.QueryFirstOrDefault<Tasks.Models.Task>(selectQuery);
+            return db.QueryFirstOrDefault<Task>(selectQuery);
         }
     }
 
-    public Tasks.Models.Task AddTask(Tasks.Models.Task task)
+    public Task AddTask(Task task)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
@@ -46,11 +44,11 @@ public class TaskRepository : ITaskRepository
                 $"'{task.InitiatorId}','{task.ExpirationDate}') " +
                 "RETURNING \"Id\", \"Subject\", \"Description\", \"ContractorId\", " +
                 "\"InitiatorId\", \"CreatedDate\", \"ExpirationDate\"";
-            return db.QueryFirstOrDefault<Tasks.Models.Task>(insertQuery);
+            return db.QueryFirstOrDefault<Task>(insertQuery);
         }
     }
 
-    public void UpdateTask(Tasks.Models.Task task)
+    public void UpdateTask(Task task)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {

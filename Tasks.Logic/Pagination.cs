@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Reflection;
 using Tasks.DAL.Repositories.Interface;
-using Tasks.Models;
 
 namespace Tasks.Logic
 {

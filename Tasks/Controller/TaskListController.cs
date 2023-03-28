@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Logic;
 using Tasks.Models;
-using Task = Tasks.Models.Task;
+using Task = Tasks.Domain.Models.Tasks.Task;
 
 namespace Tasks.Controllers
 {

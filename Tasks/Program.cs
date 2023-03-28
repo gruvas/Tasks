@@ -12,12 +12,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+var dbType = builder.Configuration["DbConfig:Type"];
 string connectionString = builder.Configuration["ConnectionString:NpgsqlConnectionString"];
-PostgresMigrator.Migrate(connectionString);
-builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
-builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
 
-
+switch (dbType)
+{
+    case "Postgres":
+        PostgresMigrator.Migrate(connectionString);
+        builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+        builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
+    break;
+    case "EF":
+        PostgresMigrator.Migrate(connectionString);
+        builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
+        builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
+    break;
+}
 
 var app = builder.Build();
 

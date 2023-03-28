@@ -1,4 +1,6 @@
-﻿namespace Tasks.Models
+﻿using Tasks.Domain.Models.Users;
+
+namespace Tasks.Models
 {
     public class UsersModel
     {

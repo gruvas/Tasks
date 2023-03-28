@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Tasks\Tasks.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.PostgresMigrate", "Tasks.PostgresMigrate\Tasks.PostgresMigrate.csproj", "{67E501A8-F72F-4767-9237-4921E0E01765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.Logic", "Tasks.Logic\Tasks.Logic.csproj", "{0F5326AF-B4CB-4518-918D-34C0A3231D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.Logic", "Tasks.Logic\Tasks.Logic.csproj", "{0F5326AF-B4CB-4518-918D-34C0A3231D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.DAL", "Tasks.DAL\Tasks.DAL.csproj", "{BC1C3029-2B12-4618-BBE8-A7A91902687D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks.DAL", "Tasks.DAL\Tasks.DAL.csproj", "{BC1C3029-2B12-4618-BBE8-A7A91902687D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.DAL.EF", "Task.DAL.EF\Tasks.DAL.EF.csproj", "{CC547CEA-116A-49CC-8CE6-6DEAAF254151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.Domain", "Tasks.Domain\Tasks.Domain.csproj", "{F4086505-C012-4E4B-83A1-E8BE44AAEFDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC1C3029-2B12-4618-BBE8-A7A91902687D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC547CEA-116A-49CC-8CE6-6DEAAF254151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC547CEA-116A-49CC-8CE6-6DEAAF254151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC547CEA-116A-49CC-8CE6-6DEAAF254151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC547CEA-116A-49CC-8CE6-6DEAAF254151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4086505-C012-4E4B-83A1-E8BE44AAEFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4086505-C012-4E4B-83A1-E8BE44AAEFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4086505-C012-4E4B-83A1-E8BE44AAEFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4086505-C012-4E4B-83A1-E8BE44AAEFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

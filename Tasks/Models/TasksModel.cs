@@ -1,4 +1,6 @@
-﻿namespace Tasks.Models
+﻿using Task = Tasks.Domain.Models.Tasks.Task;
+
+namespace Tasks.Models
 {
     public class TasksModel
     {

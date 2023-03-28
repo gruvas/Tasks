@@ -35,16 +35,3 @@ button {
 
     padding: 5px 10px;
 }
-
-.input-name {
-    margin: 15px;
-}
-
-.create-button {
-    margin: 15px;
-}
-
-.home-footer {
-    justify-content: space-evenly;
-    display: flex;
-}

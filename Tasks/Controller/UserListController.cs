@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
+using Tasks.Domain.Models.Users;
 using Tasks.Logic;
 using Tasks.Models;
 

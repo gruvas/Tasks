@@ -6,7 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using Tasks.DAL;
 using Tasks.DAL.Repositories.Interface;
-using Tasks.Models;
+using Tasks.Domain.Models.Users;
 
 
 public class UserRepository : IUserRepository
@@ -18,7 +18,7 @@ public class UserRepository : IUserRepository
         connectionString = connection;
     }
 
-    public List<Tasks.Models.User> GetAllUsers()
+    public List<User> GetAllUsers()
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
@@ -26,27 +26,27 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public Tasks.Models.User GetUserById(int id)
+    public User GetUserById(int id)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string selectQuery = $"SELECT * FROM main.users WHERE \"Id\" = {id}";
-            return db.QueryFirstOrDefault<Tasks.Models.User>(selectQuery);
+            return db.QueryFirstOrDefault<User>(selectQuery);
         }
     }
 
-    public Tasks.Models.User AddUser(Tasks.Models.User user)
+    public User AddUser(User user)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string insertQuery = $"INSERT INTO main.users(\"LastName\", \"FirstName\", \"Email\") " +
                                  $"VALUES('{user.LastName}', '{user.FirstName}','{user.Email}')" +
                              "RETURNING \"Id\", \"LastName\", \"FirstName\", \"Email\"";
-            return db.QueryFirstOrDefault<Tasks.Models.User>(insertQuery);
+            return db.QueryFirstOrDefault<User>(insertQuery);
         }
     }
 
-    public void UpdateUser(Tasks.Models.User user)
+    public void UpdateUser(User user)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
