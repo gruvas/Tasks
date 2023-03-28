@@ -47,11 +47,18 @@
     </table>
 
     <footer class="home-footer">
-        <a asp-action="Index" asp-route-page="@(Model.PageCurrent - 1 < 1 ? 1 : Model.PageCurrent - 1)">Назад</a>
-        <a asp-action="Index" asp-route-page="@(Model.PageCurrent + 1 > Model.PageCount ? Model.PageCount : Model.PageCurrent + 1)">Вперед</a>
+        @if (Model.PageCurrent > 1)
+        {
+            <a asp-action="Index" asp-route-page="@(Model.PageCurrent - 1)">Назад</a>
+        }
+
+        @if (Model.PageCurrent < Model.PageCount)
+        {
+            <a asp-action="Index" asp-route-page="@(Model.PageCurrent + 1)">Вперед</a>
+        }
     </footer>
 
     <div class="text-center mt-2">
-        <a asp-controller="/TaskList" asp-action="Index">Перейти к созданию задач</a>
+        <a asp-controller="/TaskList" asp-action="Index">Перейти к задачам</a>
     </div>
 </div>
