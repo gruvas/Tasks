@@ -1,5 +1,8 @@
-﻿namespace Tasks.Domain.Models.Tasks
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Tasks.Domain.Models.Tasks
 {
+    [Table("tasks", Schema = "main")]
     public class Task
     {
         public int Id { get; set; }

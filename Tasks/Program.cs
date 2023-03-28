@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Task.DAL.EF;
 using Tasks.DAL;
 using Tasks.DAL.Repositories;
 using Tasks.DAL.Repositories.Interface;
@@ -25,8 +27,10 @@ switch (dbType)
     break;
     case "EF":
         PostgresMigrator.Migrate(connectionString);
-        builder.Services.AddScoped<IUserRepository, UserRepository>(x => new UserRepository(connectionString));
-        builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
+        builder.Services.AddDbContext<PostgreeContext>(options =>
+            options.UseNpgsql(connectionString));
+        builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
+        builder.Services.AddScoped<ITaskRepository, TaskRepositoryEF>();
     break;
 }
 

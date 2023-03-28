@@ -1,5 +1,8 @@
-﻿namespace Tasks.Domain.Models.Users
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Tasks.Domain.Models.Users
 {
+    [Table("users", Schema = "main")]
     public class User
     {
         public int Id { get; set; }

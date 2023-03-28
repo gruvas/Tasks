@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Logic;
 using Tasks.Models;
-using Task = Tasks.Domain.Models.Tasks.Task;
+using T = Tasks.Domain.Models.Tasks;
 
 namespace Tasks.Controllers
 {
@@ -43,14 +43,14 @@ namespace Tasks.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Task task)
+        public IActionResult Create(T.Task task)
         {
             return View(task);
         }
 
         [HttpGet]
         [HttpPost]
-        public IActionResult Change(Task task, int? id)
+        public IActionResult Change(T.Task task, int? id)
         {
             if (id != null)
             {
@@ -69,7 +69,7 @@ namespace Tasks.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Task task)
+        public IActionResult Index(T.Task task)
         {
             _taskRepository.UpdateTask(task);
 
