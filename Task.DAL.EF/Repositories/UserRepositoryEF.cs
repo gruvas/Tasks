@@ -7,6 +7,7 @@ using Tasks.DAL;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Domain.Models.Users;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 
 public class UserRepositoryEF : IUserRepository
@@ -26,6 +27,10 @@ public class UserRepositoryEF : IUserRepository
     public User GetUserById(int id)
     {
         return _context.Users.FirstOrDefault(u => u.Id == id);
+    }
+    public List<int> GettingIdsTask()
+    {
+        return _context.Users.Select(t => t.Id).Distinct().ToList();
     }
 
     public User AddUser(User user)

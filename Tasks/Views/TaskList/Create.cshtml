@@ -19,7 +19,7 @@
 
     <label asp-for="Task.ContractorId">ContractorId</label>
     <select asp-for="Task.ContractorId" class="form-control" required>
-        @foreach (var id in Model.TaskIds)
+        @foreach (var id in Model.UserIds)
         {
             <!option value="@id">@id</!option>
         }
@@ -28,7 +28,7 @@
 
     <label asp-for="Task.InitiatorId">InitiatorId</label>
     <select asp-for="Task.InitiatorId" class="form-control" required>
-        @foreach (var id in Model.TaskIds)
+        @foreach (var id in Model.UserIds)
         {
             <!option value="@id">@id</!option>
         }

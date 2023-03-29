@@ -35,6 +35,14 @@ public class UserRepository : IUserRepository
         }
     }
 
+    public List<int> GettingIdsTask()
+    {
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            return db.Query<int>("SELECT \"Id\" FROM main.users").ToList();
+        }
+    }
+
     public User AddUser(User user)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))

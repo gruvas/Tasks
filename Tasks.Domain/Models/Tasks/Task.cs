@@ -12,6 +12,7 @@ namespace Tasks.Domain.Models.Tasks
         public int InitiatorId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int UserTaskId { get; set; }
 
         public Task()
         {
