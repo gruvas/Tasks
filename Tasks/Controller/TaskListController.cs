@@ -39,7 +39,15 @@ namespace Tasks.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            List<int> taskIds = _taskRepository.GettingIdsTask();
+
+            var model = new TasksChangeModel
+            {
+                Task = null,
+                TaskIds = taskIds
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -54,12 +62,21 @@ namespace Tasks.Controllers
         {
             if (id != null)
             {
-                var taskById = _taskRepository.GetTaskById(id.Value);
+                T.Task taskById = _taskRepository.GetTaskById(id.Value);
+                List<int> taskIds = _taskRepository.GettingIdsTask();
+
                 if (taskById == null)
                 {
                     return NotFound();
                 }
-                return View(taskById);
+
+                var model = new TasksChangeModel
+                {
+                    Task = taskById,
+                    TaskIds = taskIds
+                };
+
+                return View(model);
             }
             else 
             {

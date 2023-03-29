@@ -17,23 +17,6 @@ public class TaskRepository : ITaskRepository
         connectionString = connection;
     }
 
-    public List<Task> GetAllTasks()
-    {
-        using (IDbConnection db = new NpgsqlConnection(connectionString))
-        {
-            return db.Query<Task>("SELECT * FROM main.tasks").ToList();
-        }
-    }
-
-    public Task GetTaskById(int id)
-    {
-        using (IDbConnection db = new NpgsqlConnection(connectionString))
-        {
-            string selectQuery = $"SELECT * FROM main.tasks WHERE \"Id\" = {id}";
-            return db.QueryFirstOrDefault<Task>(selectQuery);
-        }
-    }
-
     public Task AddTask(Task task)
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
@@ -47,6 +30,32 @@ public class TaskRepository : ITaskRepository
             return db.QueryFirstOrDefault<Task>(insertQuery);
         }
     }
+
+    public List<Task> GetAllTasks()
+    {
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            return db.Query<Task>("SELECT * FROM main.tasks").ToList();
+        }
+    }
+
+    public List<int> GettingIdsTask()
+    {
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            return db.Query<int>("SELECT \"Id\" FROM main.tasks").ToList();
+        }
+    }
+
+    public Task GetTaskById(int id)
+    {
+        using (IDbConnection db = new NpgsqlConnection(connectionString))
+        {
+            string selectQuery = $"SELECT * FROM main.tasks WHERE \"Id\" = {id}";
+            return db.QueryFirstOrDefault<Task>(selectQuery);
+        }
+    }
+
 
     public void UpdateTask(Task task)
     {

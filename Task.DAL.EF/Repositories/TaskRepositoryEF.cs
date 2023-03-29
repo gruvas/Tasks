@@ -20,11 +20,6 @@ public class TaskRepositoryEF : ITaskRepository
         return _dbContext.Tasks.ToList();
     }
 
-    public T.Task GetTaskById(int id)
-    {
-        return _dbContext.Tasks.FirstOrDefault(t => t.Id == id);
-    }
-
     public T.Task AddTask(T.Task task)
     {
         task.ExpirationDate = DateTime.SpecifyKind(task.ExpirationDate, DateTimeKind.Utc);
@@ -32,6 +27,16 @@ public class TaskRepositoryEF : ITaskRepository
         _dbContext.Tasks.Add(task);
         _dbContext.SaveChanges();
         return task;
+    }
+
+    public T.Task GetTaskById(int id)
+    {
+        return _dbContext.Tasks.FirstOrDefault(t => t.Id == id);
+    }
+
+    public List<int> GettingIdsTask()
+    {
+        return _dbContext.Tasks.Select(t => t.Id).Distinct().ToList();
     }
 
     public void UpdateTask(T.Task task)
@@ -49,8 +54,6 @@ public class TaskRepositoryEF : ITaskRepository
         {
             _dbContext.Tasks.Remove(taskToDelete);
             _dbContext.SaveChanges();
-        }
-            
+        }  
     }
-    
 }
