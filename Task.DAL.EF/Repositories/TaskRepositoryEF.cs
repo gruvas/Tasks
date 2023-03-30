@@ -34,11 +34,6 @@ public class TaskRepositoryEF : ITaskRepository
         return _dbContext.Tasks.FirstOrDefault(t => t.Id == id);
     }
 
-    public List<int> GettingIdsTask()
-    {
-        return _dbContext.Tasks.Select(t => t.Id).Distinct().ToList();
-    }
-
     public void UpdateTask(T.Task task)
     {
         task.ExpirationDate = DateTime.SpecifyKind(task.ExpirationDate, DateTimeKind.Utc);

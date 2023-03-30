@@ -39,13 +39,6 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-    public List<int> GettingIdsTask()
-    {
-        using (IDbConnection db = new NpgsqlConnection(connectionString))
-        {
-            return db.Query<int>("SELECT \"Id\" FROM main.tasks").ToList();
-        }
-    }
 
     public Task GetTaskById(int id)
     {

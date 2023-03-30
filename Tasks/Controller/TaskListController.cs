@@ -11,10 +11,12 @@ namespace Tasks.Controllers
     public class TaskListController : Controller
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TaskListController(ITaskRepository taskRepository)
+        public TaskListController(ITaskRepository taskRepository, IUserRepository userRepository)
         {
             _taskRepository = taskRepository;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -39,12 +41,12 @@ namespace Tasks.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            List<int> taskIds = _taskRepository.GettingIdsTask();
+            List<int> userIds = _userRepository.GettingIdsUser();
 
             var model = new TasksChangeModel
             {
                 Task = null,
-                TaskIds = taskIds
+                UserIds = userIds
             };
 
             return View(model);
@@ -63,7 +65,7 @@ namespace Tasks.Controllers
             if (id != null)
             {
                 T.Task taskById = _taskRepository.GetTaskById(id.Value);
-                List<int> taskIds = _taskRepository.GettingIdsTask();
+                List<int> userIds = _userRepository.GettingIdsUser();
 
                 if (taskById == null)
                 {
@@ -73,7 +75,7 @@ namespace Tasks.Controllers
                 var model = new TasksChangeModel
                 {
                     Task = taskById,
-                    TaskIds = taskIds
+                    UserIds = userIds
                 };
 
                 return View(model);

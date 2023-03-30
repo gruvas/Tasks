@@ -6,6 +6,7 @@ namespace Tasks.DAL.Repositories.Interface
     {
         List<User> GetAllUsers();
         User GetUserById(int id);
+        List<int> GettingIdsUser();
         User AddUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
