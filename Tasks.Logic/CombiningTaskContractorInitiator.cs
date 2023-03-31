@@ -12,7 +12,8 @@ namespace Tasks.Logic
 {
     public class Combining
     {
-        public static List<TaskContractorInitiator> TaskContractorInitiator(List<Task> tasks, List<ContractorInitiator> contractorInitiator)
+        public static List<TaskContractorInitiator> TaskContractorInitiator(List<Task> tasks, 
+            List<ContractorInitiator> contractorInitiator)
         {
             var taskContractorInitiator = new List<TaskContractorInitiator>();
 

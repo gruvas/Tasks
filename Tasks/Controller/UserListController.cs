@@ -45,48 +45,26 @@ namespace Tasks.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
-            return View(user);
+            user = _userRepository.AddUser(user);
+            return RedirectToAction("Change", "UserList", new { id = user.Id });
         }
 
         [HttpGet]
-        [HttpPost]
-        public IActionResult Change(User user, int? id)
+        public IActionResult Change(int? id)
         {
-            if (id != null)
+            var userById = _userRepository.GetUserById(id.Value);
+            if (userById == null)
             {
-                var userById = _userRepository.GetUserById(id.Value);
-                if (userById == null)
-                {
-                    return NotFound();
-                }
-                return View(userById);
+                return NotFound();
             }
-            else 
-            {
-                user = _userRepository.AddUser(user);
-                return RedirectToAction("Change", "UserList", new { id = user.Id });
-            }
+            return View(userById);
         }
 
         [HttpPost]
-        public IActionResult Index(User user)
+        public IActionResult Change(User user)
         {
             _userRepository.UpdateUser(user);
-
-            var users = _userRepository.GetAllUsers();
-
-            HttpRequest request = HttpContext.Request;
-
-            var (pageCurrent, pageCount, displayedUsers) = Pagination.GetPagedResult(users, request);
-
-            var model = new UsersModel
-            {
-                Users = displayedUsers,
-                PageCurrent = pageCurrent,
-                PageCount = pageCount
-            };
-
-            return View(model);
+            return RedirectToAction("Index", "UserList");
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
 using Npgsql;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using Tasks.DAL;
 using Tasks.DAL.Repositories.Interface;
 using Tasks.Domain.Models.Users;
 

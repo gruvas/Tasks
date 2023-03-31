@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 using Tasks.DAL.Repositories.Interface;
+using Tasks.Domain.Models.ContractorInitiator;
 using Tasks.Logic;
 using Tasks.Models;
-using Tasks.Domain.Models.Tasks;
 using T = Tasks.Domain.Models.Tasks;
-using Tasks.Domain.Models.ContractorInitiator;
-using static Azure.Core.HttpHeader;
 
 namespace Tasks.Controllers
 {
@@ -55,7 +51,6 @@ namespace Tasks.Controllers
 
             var model = new T.TasksChangeModel
             {
-                Task = null,
                 UserIds = userIds
             };
 
@@ -63,51 +58,58 @@ namespace Tasks.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(T.Task task)
+        public IActionResult Create(T.TasksChangeModel taskContractorInitiator)
         {
-            return View(task);
+            List<int> userIds = _userRepository.GettingIdsUser();
+
+            var model = new T.TasksChangeModel
+            {
+                Task = taskContractorInitiator.Task,
+                UserIds = userIds,
+                ContractorInitiator = taskContractorInitiator.ContractorInitiator
+            };
+
+            int taskId = _taskRepository.AddTask(model);
+            return RedirectToAction("Change", "TaskList", new { id = taskId });
         }
 
         [HttpGet]
-        [HttpPost]
-        public IActionResult Change(T.Task task, int? id)
+        public IActionResult Change(int? id)
         {
-            T.Task taskById = _taskRepository.GetTaskById(id.Value);
+            T.Task task = _taskRepository.GetTaskById(id.Value);
             List<int> userIds = _userRepository.GettingIdsUser();
+            ContractorInitiator contractorInitiator = _contractorInitiatorRepository.GetById(task.ContractorInitiatorId);
 
-            if (taskById == null)
+            if (task == null)
             {
                 return NotFound();
             }
 
             var model = new T.TasksChangeModel
             {
-                Task = taskById,
-                UserIds = userIds
+                Task = task,
+                UserIds = userIds,
+                ContractorInitiator = contractorInitiator
             };
 
             return View(model);
         }
 
-        //[HttpPost]
-        //public IActionResult Index(T.Task task)
-        //{
-        //    //_taskRepository.UpdateTask(task);
+        [HttpPost]
+        public IActionResult Change(T.TasksChangeModel taskContractorInitiator)
+        {
+            List<int> userIds = _userRepository.GettingIdsUser();
 
-        //    var tasks = _taskRepository.GetAllTasks();
+            var model = new T.TasksChangeModel
+            {
+                Task = taskContractorInitiator.Task,
+                UserIds = userIds,
+                ContractorInitiator = taskContractorInitiator.ContractorInitiator
+            };
 
-        //    HttpRequest request = HttpContext.Request;
+            _taskRepository.UpdateTask(model);
 
-        //    var (pageCurrent, pageCount, displayedTasks) = Pagination.GetPagedResult(tasks, request);
-
-        //    var model = new TasksModel
-        //    {
-        //        Tasks = displayedTasks,
-        //        PageCurrent = pageCurrent,
-        //        PageCount = pageCount
-        //    };
-
-        //    return View(model);
-        //}
+            return RedirectToAction("Index", "TaskList");
+        }
     }
 }

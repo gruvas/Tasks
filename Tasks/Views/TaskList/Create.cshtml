@@ -6,7 +6,7 @@
     <a asp-controller="/TaskList" asp-action="Index">Перейти ко всем задачам</a>
 </div>
 
-<form method="post" asp-controller="/TaskList" asp-action="Change">
+<form method="post" asp-controller="/TaskList" asp-action="Create">
     <div class="form-group">
         <label asp-for="Task.Subject">Subject</label>
         <input asp-for="Task.Subject" class="form-control" required />
@@ -37,6 +37,7 @@
     <div class="form-group">
         <label asp-for="Task.ExpirationDate">ExpirationDate</label>
         <input asp-for="Task.ExpirationDate" class="form-control datepicker"
+               type="datetime-local"
                value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
     </div>
 

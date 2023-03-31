@@ -6,9 +6,8 @@ namespace Tasks.DAL.Repositories.Interface
     public interface ITaskRepository
     {
         List<Task> GetAllTasks();
-        Task AddTask(TasksChangeModel tasksChangeModel);
+        int AddTask(TasksChangeModel taskContractorInitiator);
         Task GetTaskById(int id);
         void UpdateTask(TasksChangeModel tasksChangeModel);
-        void DeleteTask(int id);
     }
 }

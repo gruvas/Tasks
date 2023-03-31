@@ -3,10 +3,10 @@
 <h1 class="text-center">User change</h1>
 
 <div class="text-center">
-    <a asp-controller="/" asp-action="Index">На главную</a>
+    <a asp-controller="/UserList" asp-action="Index">На главную</a>
 </div>
 
-<form method="post" asp-controller="/" asp-action="Index">
+<form method="post" asp-controller="/UserList" asp-action="Change">
     <input type="hidden" asp-for="Id" value="@Model.Id" />
 
     <div class="form-group">

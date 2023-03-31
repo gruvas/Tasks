@@ -5,5 +5,6 @@ namespace Tasks.DAL.Repositories.Interface
     public interface IContractorInitiatorRepository
     {
         List<ContractorInitiator> GetAll();
+        ContractorInitiator GetById(int Id);
     }
 }

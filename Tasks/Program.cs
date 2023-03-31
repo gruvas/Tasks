@@ -26,13 +26,14 @@ switch (dbType)
         builder.Services.AddScoped<ITaskRepository, TaskRepository>(x => new TaskRepository(connectionString));
         builder.Services.AddScoped<IContractorInitiatorRepository, ContractorInitiatorRepository>(x => new ContractorInitiatorRepository(connectionString));
     break;
-    //case "EF":
-    //    PostgresMigrator.Migrate(connectionString);
-    //    builder.Services.AddDbContext<PostgreeContext>(options =>
-    //        options.UseNpgsql(connectionString));
-    //    builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
-    //    builder.Services.AddScoped<ITaskRepository, TaskRepositoryEF>();
-    //break;
+    case "EF":
+        PostgresMigrator.Migrate(connectionString);
+        builder.Services.AddDbContext<PostgreeContext>(options =>
+            options.UseNpgsql(connectionString));
+        builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
+        builder.Services.AddScoped<ITaskRepository, TaskRepositoryEF>();
+        builder.Services.AddScoped<IContractorInitiatorRepository, ContractorInitiatorRepositoryEF>();
+        break;
 }
 
 var app = builder.Build();

@@ -6,8 +6,9 @@
     <a asp-controller="/TaskList" asp-action="Index">Перейти ко всем задачам</a>
 </div>
 
-<form method="post" asp-controller="/TaskList" asp-action="Index">
+<form method="post" asp-controller="/TaskList" asp-action="Change">
     <input type="hidden" asp-for="Task.Id" value="@Model.Task.Id" />
+    <input type="hidden" asp-for="Task.ContractorInitiatorId" value="@Model.Task.ContractorInitiatorId" />
 
     <div class="form-group">
         <label asp-for="Task.Subject">Subject</label>
@@ -20,26 +21,27 @@
                   value="@Model.Task.Description" required></textarea>
     </div>
 
-    @*<label asp-for="Task.ContractorId">ContractorId</label>
-    <select asp-for="Task.ContractorId" class="form-control" required>
+    <label asp-for="ContractorInitiator.ContractorId">ContractorId</label>
+    <select asp-for="ContractorInitiator.ContractorId" class="form-control" required>
         @foreach (var id in Model.UserIds)
         {
-            <!option value="@id" @(id == Model.Task.ContractorId ? "selected" : "")>@id</!option>
+            <!option value="@id" @(id == Model.ContractorInitiator.ContractorId ? "selected" : "")>@id</!option>
         }
     </select>
 
 
-    <label asp-for="Task.InitiatorId">InitiatorId</label>
-    <select asp-for="Task.InitiatorId" class="form-control" required>
+    <label asp-for="ContractorInitiator.InitiatorId">InitiatorId</label>
+    <select asp-for="ContractorInitiator.InitiatorId" class="form-control" required>
         @foreach (var id in Model.UserIds)
         {
-            <!option value="@id" @(id == Model.Task.InitiatorId ? "selected" : "")>@id</!option>
+            <!option value="@id" @(id == Model.ContractorInitiator.InitiatorId ? "selected" : "")>@id</!option>
         }
-    </select>*@
+    </select>
 
     <div class="form-group">
         <label asp-for="Task.ExpirationDate">ExpirationDate</label>
         <input asp-for="Task.ExpirationDate" class="form-control datepicker"
+               type="datetime-local"
                value="@Model.Task.ExpirationDate.ToString("yyyy-MM-ddTHH:mm")" required />
     </div>
 
