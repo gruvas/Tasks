@@ -69,7 +69,7 @@ namespace Tasks.Controllers
         {
             List<int> userIds = _userRepository.GettingIdsUser();
 
-            var model = new TasksChangeModel
+            var model = new T.TasksChangeModel
             {
                 Task = null,
                 UserIds = userIds
@@ -96,7 +96,7 @@ namespace Tasks.Controllers
                 return NotFound();
             }
 
-            var model = new TasksChangeModel
+            var model = new T.TasksChangeModel
             {
                 Task = taskById,
                 UserIds = userIds
