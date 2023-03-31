@@ -28,20 +28,20 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Tasks.Any())
+            @if (Model.TaskContractorInitiator.Any())
             {
-                @foreach (var task in Model.Tasks)
+                @foreach (var task in Model.TaskContractorInitiator)
                 {
                     <tr>
                         <td>
-                            <a href="/TaskList/Change/@task.Id">@task.Id</a>
+                            <a href="/TaskList/Change/@task.Task.Id">@task.Task.Id</a>
                         </td>
-                        <td>@task.Subject</td>
-                        <td>@task.Description</td>
-                        <td>@task.ContractorId</td>
-                        <td>@task.InitiatorId</td>
-                        <td>@task.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
-                        <td>@task.ExpirationDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@task.Task.Subject</td>
+                        <td>@task.Task.Description</td>
+                        <td>@task.СontractorInitiator.ContractorId</td>
+                        <td>@task.СontractorInitiator.InitiatorId</td>
+                        <td>@task.Task.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@task.Task.ExpirationDate.ToString("dd.MM.yyyy HH:mm")</td>
                     </tr>
                 }
             }

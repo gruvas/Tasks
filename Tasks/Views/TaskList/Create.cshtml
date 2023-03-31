@@ -1,4 +1,4 @@
-﻿@model Tasks.Models.TasksChangeModel
+﻿@model Tasks.Domain.Models.Tasks.TasksChangeModel
 
 <h1 class="text-center">Create a task</h1>
 
@@ -17,8 +17,8 @@
         <textarea cols="50" rows="5" asp-for="Task.Description" class="form-control" required></textarea>
     </div>
 
-    <label asp-for="Task.ContractorId">ContractorId</label>
-    <select asp-for="Task.ContractorId" class="form-control" required>
+    <label asp-for="ContractorInitiator.ContractorId">ContractorId</label>
+    <select asp-for="ContractorInitiator.ContractorId" class="form-control" required>
         @foreach (var id in Model.UserIds)
         {
             <!option value="@id">@id</!option>
@@ -26,8 +26,8 @@
     </select>
 
 
-    <label asp-for="Task.InitiatorId">InitiatorId</label>
-    <select asp-for="Task.InitiatorId" class="form-control" required>
+    <label asp-for="ContractorInitiator.InitiatorId">InitiatorId</label>
+    <select asp-for="ContractorInitiator.InitiatorId" class="form-control" required>
         @foreach (var id in Model.UserIds)
         {
             <!option value="@id">@id</!option>

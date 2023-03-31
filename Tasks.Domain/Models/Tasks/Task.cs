@@ -8,10 +8,9 @@ namespace Tasks.Domain.Models.Tasks
         public int Id { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
-        public int ContractorId { get; set; }
-        public int InitiatorId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int ContractorInitiatorId { get; set; }
 
         public Task()
         {

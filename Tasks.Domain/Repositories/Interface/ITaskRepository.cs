@@ -1,13 +1,14 @@
-﻿using Task = Tasks.Domain.Models.Tasks.Task;
+﻿using Tasks.Domain.Models.Tasks;
+using Task = Tasks.Domain.Models.Tasks.Task;
 
 namespace Tasks.DAL.Repositories.Interface
 {
     public interface ITaskRepository
     {
         List<Task> GetAllTasks();
-        Task AddTask(Task task);
+        Task AddTask(TasksChangeModel tasksChangeModel);
         Task GetTaskById(int id);
-        void UpdateTask(Task task);
+        void UpdateTask(TasksChangeModel tasksChangeModel);
         void DeleteTask(int id);
     }
 }
