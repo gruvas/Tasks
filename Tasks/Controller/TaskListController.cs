@@ -32,31 +32,15 @@ namespace Tasks.Controllers
             var tasks = _taskRepository.GetAllTasks();
             var contractorInitiator = _contractorInitiatorRepository.GetAll();
 
-            var taskContractorInitiator = new List<TaskContractorInitiator>();
-
-
-            for (int i = 0; i < tasks.Count; i++)
-            {
-                for (int ii = 0; ii < contractorInitiator.Count; ii++)
-                {
-                    if (tasks[i].ContractorInitiatorId == contractorInitiator[ii].Id)
-                    {
-                        taskContractorInitiator.Add(new TaskContractorInitiator
-                        {
-                            Task = tasks[i],
-                            СontractorInitiator = contractorInitiator[ii]
-                        });
-                    }
-                }  
-            }
+            var taskContractorInitiator = Combining.TaskContractorInitiator(tasks, contractorInitiator);
 
             HttpRequest request = HttpContext.Request;
 
-            var (pageCurrent, pageCount, displayedTasks) = Pagination.GetPagedResult(tasks, request);
+            var (pageCurrent, pageCount, displayedTasks) = Pagination.GetPagedResult(taskContractorInitiator, request);
 
             var model = new TasksModel
             {
-                TaskContractorInitiator = taskContractorInitiator,
+                TaskContractorInitiator = displayedTasks,
                 PageCurrent = pageCurrent,
                 PageCount = pageCount
             };
