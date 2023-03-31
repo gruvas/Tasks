@@ -49,6 +49,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+//Redirects to the error page when it occurs
 //app.UseExceptionHandler("/Error");
 //app.UseStatusCodePagesWithRedirects("/Error/{0}");
 
