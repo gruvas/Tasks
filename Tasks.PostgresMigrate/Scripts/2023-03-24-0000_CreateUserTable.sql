@@ -1,5 +1,5 @@
 ﻿CREATE TABLE IF NOT EXISTS main."users" (
-    "Id" serial4 NOT NULL,
+    "Id" serial4 NOT NULL PRIMARY KEY,
     "LastName" varchar(50) NULL,
     "FirstName" varchar(50) NULL,
     "Email" varchar(128) NULL

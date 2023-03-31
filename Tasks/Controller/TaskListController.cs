@@ -25,6 +25,7 @@ namespace Tasks.Controllers
             _contractorInitiatorRepository = contractorInitiatorRepository;
         }
 
+
         [HttpGet]
         public IActionResult Index()
         {

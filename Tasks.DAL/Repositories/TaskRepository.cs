@@ -96,8 +96,16 @@ public class TaskRepository : ITaskRepository
     {
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
+            // Get the UserTaskId for this task
+            string getUserTaskIdQuery = $"SELECT \"UserTaskId\" FROM main.tasks WHERE \"Id\" = {id}";
+            int userTaskId = db.QuerySingle<int>(getUserTaskIdQuery);
+
             string deleteQuery = $"DELETE FROM main.tasks WHERE \"Id\" = {id}";
             db.Execute(deleteQuery);
+
+            // Delete user_task mapping
+            string deleteUserTaskQuery = $"DELETE FROM main.users_tasks WHERE \"UserTaskId\" = {userTaskId}";
+            db.Execute(deleteUserTaskQuery);
         }
     }
 }

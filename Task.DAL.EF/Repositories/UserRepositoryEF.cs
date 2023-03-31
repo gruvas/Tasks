@@ -28,6 +28,10 @@ public class UserRepositoryEF : IUserRepository
     {
         return _context.Users.FirstOrDefault(u => u.Id == id);
     }
+    public List<int> GettingIdsTask()
+    {
+        return _context.Users.Select(t => t.Id).Distinct().ToList();
+    }
 
     public List<int> GettingIdsUser()
     {
