@@ -61,9 +61,9 @@ public class TaskRepository : ITaskRepository
         using (IDbConnection db = new NpgsqlConnection(connectionString))
         {
             string updateContractorInitiatorQuery = $"UPDATE main.contractor_initiator " +
-            $"SET \"ContractorId\" = '{taskContractorInitiator.ContractorInitiator.ContractorId}', " +
-            $"\"InitiatorId\" = '{taskContractorInitiator.ContractorInitiator.InitiatorId}' " +
-            $"WHERE \"Id\" = '{taskContractorInitiator.Task.ContractorInitiatorId}'";
+                $"SET \"ContractorId\" = '{taskContractorInitiator.ContractorInitiator.ContractorId}', " +
+                $"\"InitiatorId\" = '{taskContractorInitiator.ContractorInitiator.InitiatorId}' " +
+                $"WHERE \"Id\" = '{taskContractorInitiator.Task.ContractorInitiatorId}'";
 
             db.Execute(updateContractorInitiatorQuery);
 

@@ -77,13 +77,14 @@ namespace Tasks.Controllers
         public IActionResult Change(int? id)
         {
             T.Task task = _taskRepository.GetTaskById(id.Value);
-            List<int> userIds = _userRepository.GettingIdsUser();
-            ContractorInitiator contractorInitiator = _contractorInitiatorRepository.GetById(task.ContractorInitiatorId);
 
             if (task == null)
             {
                 return NotFound();
             }
+
+            List<int> userIds = _userRepository.GettingIdsUser();
+            ContractorInitiator contractorInitiator = _contractorInitiatorRepository.GetById(task.ContractorInitiatorId);
 
             var model = new T.TasksChangeModel
             {
