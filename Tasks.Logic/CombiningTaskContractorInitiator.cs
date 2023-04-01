@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using Tasks.Domain.Models.ContractorInitiator;
 using Tasks.Domain.Models.Tasks;
 using Task = Tasks.Domain.Models.Tasks.Task;
-using TaskContractorInitiator = Tasks.Domain.Models.Tasks.TaskContractorInitiator;
 
 namespace Tasks.Logic
 {
     public class Combining
     {
-        public static List<TaskContractorInitiator> TaskContractorInitiator(List<Task> tasks, 
+        public static List<TasksChangeModel> TaskContractorInitiator(List<Task> tasks, 
             List<ContractorInitiator> contractorInitiator)
         {
-            var taskContractorInitiator = new List<TaskContractorInitiator>();
+            var taskContractorInitiator = new List<TasksChangeModel>();
 
             for (int i = 0; i < tasks.Count; i++)
             {
@@ -23,10 +22,10 @@ namespace Tasks.Logic
                 {
                     if (tasks[i].ContractorInitiatorId == contractorInitiator[ii].Id)
                     {
-                        taskContractorInitiator.Add(new TaskContractorInitiator
+                        taskContractorInitiator.Add(new TasksChangeModel
                         {
                             Task = tasks[i],
-                            СontractorInitiator = contractorInitiator[ii]
+                            ContractorInitiator = contractorInitiator[ii]
                         });
                     }
                 }
