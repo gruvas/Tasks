@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS main."tasks"(
 
 CREATE TABLE IF NOT EXISTS main."contractor_initiator"(
 	"Id" serial4 NOT NULL PRIMARY KEY,
-	"ContractorId" int4 NOT NULL REFERENCES main."users"("Id") ON DELETE CASCADE,
-    "InitiatorId" int4 NOT NULL REFERENCES main."users"("Id") ON DELETE CASCADE
+	"ContractorId" int4 NOT NULL,
+    "InitiatorId" int4 NOT NULL
 );
 
 ALTER TABLE main."tasks" ADD CONSTRAINT "FK_tasks_contractor_initiator" FOREIGN KEY ("ContractorInitiatorId") REFERENCES main."contractor_initiator"("Id") ON DELETE CASCADE;
